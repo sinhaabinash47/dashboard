@@ -1,0 +1,41 @@
+<mat-toolbar class="bg-inherit mt-4 sm:mt-6 h-auto">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap3 w-full">
+    <div class="flex items-center lg:col-span-2">
+      <span><img src="assets/image/health.png" width="85px" height="85px" alt="" /></span>
+      <span class="font-semibold mx-4 text-3xl color-black">CVS Health</span>
+    </div>
+    <div class="border rounded-lg flex items-center justify-center bg-white">
+      <div class="w-1/2  text-center">
+        <button class="green font-bold lg:text-2xl text-xl " mat-flat-button>
+          Accelerate
+        </button>
+      </div>
+      <div class="w-1/2 bg-slate-50 h-auto p-1 rounded-tr-lg rounded-br-lg">
+        <div class="mr-4 ml-4">
+          <span class="md:text-3xl text-2xl color-black font-semibold">165<span
+              class="sm:text-base text-sm color-gray80 font-medium">/365</span></span>
+          <mat-progress-bar mode="determinate" [value]="progress" class="w-24 rounded-3xl">
+          </mat-progress-bar>
+          <span class="text-sm color-gray80 font-medium whitespace-pre-wrap">1/1/2022 - 12/31/2022</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>
+<div class="grid gap-4 xs-grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 mx-4 my-4 mt-6 custom-cards">
+  <mat-card *ngFor="let tab of cards" class="h-20 font-bold text-2xl rounded p-3">
+    <mat-icon class="text-blue-700 ">{{tab.icon}}</mat-icon>
+    <div class="">
+      <mat-list-item class="font-semibold text-2xl color-black ">{{tab.no}}</mat-list-item>
+      <p class="text-sm font-medium color-gray80">{{tab.text}}</p>
+    </div>
+  </mat-card>
+</div>
+<div class="mx-4 my-4 mt-10">
+  <div class="tabs block whitespace-nowrap overflow-y-hidden  ">
+    <a *ngFor="let tab of tabs" mat-button [routerLink]="tab.url" routerLinkActive="active"
+      class="color-gray80 sm:text-base text-sm font-medium"> {{tab.name}} </a>
+  </div>
+  <mat-divider></mat-divider>
+</div>
+<router-outlet></router-outlet>

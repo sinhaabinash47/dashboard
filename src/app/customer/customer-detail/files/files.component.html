@@ -1,0 +1,105 @@
+<mat-card *ngIf="!showFilter" class="ml-4 mr-4 mt-2 fitler-content flex items-center">
+  <div class="items-center w-full grid grid-cols-1 sm:grid-cols-12 gap-3">
+    <div class="col-span-9">
+      <h4 *ngIf="!searchFeilds" class="custom-mb text-sm color-black font-medium">No filters selected</h4>
+      <div class="flex items-center flex-wrap custom-chip">
+        <mat-chip-list #chipList *ngIf="searchFeilds && searchFeilds.quick" class=" mb-2 mr-2 lg:mb-0 md:mx-2 ">
+          <mat-chip (removed)="remove('quick')"
+            class="whitespace-nowrap mb-3 md:mb-0 ">
+            Quick Search:{{searchFeilds.quick}}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+        <mat-chip-list #chipList *ngIf="searchFeilds && searchFeilds.subscription" class=" mb-2 mr-2 lg:mb-0 md:mx-2 ">
+          <mat-chip (removed)="remove('subscription')"
+            class="whitespace-nowrap mb-2">
+            Subscription:{{searchFeilds.subscription}}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+        <mat-chip-list #chipList  *ngIf="searchFeilds && searchFeilds.status" class=" mb-2 mr-2 lg:mb-0 md:mx-2 ">
+          <mat-chip (removed)="remove('status')"
+            class="whitespace-nowrap mb-2">
+            Status:{{searchFeilds.status}}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+    </div>
+    <div class="flex items-center sm:justify-end col-span-3">
+      <mat-icon class="mr-2">filter_list</mat-icon>
+      <h4 routerLink="#" (click)="showFilter=!showFilter"
+        class="text-sky-500 cursor-pointer custom-mb font-semibold text-base "><u>Show filters</u></h4>
+    </div>
+  </div>
+</mat-card>
+
+<mat-card *ngIf="showFilter" class="ml-4 mr-4 mt-4 fitler-content">
+  <div class="items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 custom-mat-field">
+    <mat-form-field appearance="outline" class="custom-outline mb-3 lg:mb-0">
+      <mat-label class="custom-label ">Quick Search</mat-label>
+      <input name="rofl" matInput pattern="rofl" >
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="sm:mx-3 mb-3 lg:mb-0">
+      <mat-label>Subscription</mat-label>
+      <mat-select disableRipple name="rofl" matInput>
+        <mat-option value="1">Option 1</mat-option>
+        <mat-option value="2">Option 2</mat-option>
+        <mat-option value="3">Option 3</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="mb-3 lg:mb-0">
+      <mat-label>Range Date</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate placeholder="Start date">
+        <input matEndDate placeholder="End date">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+    <mat-slide-toggle class="lg:ml-8 custom-toggle mb-3 lg:mb-0 sm:mx-3 lg:mx-3 md:ml-0">Status</mat-slide-toggle>
+    <div class="text-left lg:text-right mb-3 lg:mb-0 md:mx-3 lg:mx-0">
+      <button
+        class="p-2 px-4 export-btn font-semibold text-base rounded text-white"
+        (click)="search()">Search</button>
+    </div>
+  </div>
+</mat-card>
+
+<div class="flex items-center col-span-8 justify-end mt-4 mx-4">
+  <div class="mr-2 ">
+    <button (click)="addfiles()" mat-flat-button color="primary" class="font-medium text-base export-btn"><span
+        class="material-icons-outlined">
+        add
+      </span>Add</button>
+  </div>
+  <input hidden type="file" accept=".csv,.pdf,.dir, .txt" #fileInput   />
+  <button mat-raised-button color="primary" (click)="fileInput.click()" class="font-medium text-base export-btn" >
+    <span class="material-icons">file_upload</span>Import</button>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-4 md:gap-3 gap-2 mx-4 my-4 custom-shadow">
+  <mat-card *ngFor="let contact of contacts">
+    <div class="flex  justify-between mx-2 action-btn">
+      <div class="font-semibold text-xl color-black file-card-heading">{{contact.head}}</div>
+      <span class="flex-auto"></span>
+      <mat-icon class="material-icons-outlined rounded mx-1 ">download</mat-icon>
+      <mat-icon class="material-icons-outlined rounded mx-1 " (click)="filesedit()">edit</mat-icon>
+      <mat-icon class="material-icons-outlined rounded mx-1 " (click)="delete()">delete</mat-icon>
+    </div>
+    <div class="mx-2 my-4">
+      <mat-divider></mat-divider>
+    </div>
+    <div class="flex items-center justify-between mx-2 flex-wrap color-gray58 font-medium">
+      <div class="text-base mb-1 break-all">{{contact.imageurl}}</div>
+      <div class="text-sm mb-1">{{contact.date}}</div>
+    </div>
+    <div class="mt-2 custom-chip mx-2">
+      <mat-chip-list cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+        <mat-chip class="whitespace-nowrap text-base font-medium" cdkDrag *ngFor="let heading of tramite">
+          {{heading.name}}
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+  </mat-card>
+</div>

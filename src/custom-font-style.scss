@@ -1,0 +1,44 @@
+@font-face {
+    font-family: 'gilroyultralight_italic';
+    src: local("gilroyultralight_italic"), url('assets/fonts/gilroy-ultralightitalic-webfont.woff2') format('woff2'),
+         url('assets/fonts/gilroy-ultralightitalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'gilroyregular';
+    src: local("gilroyregular"), url('assets/fonts/gilroy-regular-webfont.woff2') format('woff2'),
+         url('assets/fonts/gilroy-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'gilroymedium';
+    src: local("gilroymedium"), url('assets/fonts/gilroy-medium-webfont.woff2') format('woff2'),
+         url('assets/fonts/gilroy-medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'gilroysemibold';
+    src: local("gilroysemibold"), url('assets/fonts/gilroy-semibold-webfont.woff2') format('woff2'),
+         url('assets/fonts/gilroy-semibold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'gilroybold';
+    src: local("gilroybold"), url('assets/fonts/gilroy-bold-webfont.woff2') format('woff2'),
+         url('assets/fonts/gilroy-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+body {
+    font: 400 14px / 20px Roboto,"gilroymedium" !important;
+}
+
+

@@ -1,0 +1,21 @@
+<mat-drawer-container class="mat-typography h-full bg-light" autosize>]
+    <mat-drawer #drawer mode="side" disableClose="true" [opened]="isOpened" class="bg-sidebar w-28 p-3 custom-scroll">
+        <img src="assets/image/img-logo.png" width="73px" height="73px" alt="" class="mx-auto">
+        <mat-nav-list class="mx-5" >
+            <mat-list-item *ngFor="let tab of tabs" [matTooltip]="tab.name" [routerLink]="tab.url" matTooltipPosition="right" matTooltipClass="custom-tooltip">
+                <mat-icon fontSet="material-icons-outlined" class="text-white ">{{tab.icon}}</mat-icon>
+                <h4 mat-line *ngIf="isExpanded" class="text-white">{{tab.name}}</h4>
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer-content class="custom-drawer-content">
+        <app-header [isOpened]="isOpened" (drawerClick)="toggle()" class="app-header"></app-header>
+        <div class="mb-4"><router-outlet></router-outlet></div>
+        <mat-toolbar class="app-footer justify-between foot-bg">
+            <div class="grid grid-cols-1 sm:grid-cols-2 sm:gap-3 gap-0 w-full sm:p-4 p-2">
+                <span class="text-sm font-medium color-gray80 text-center sm:text-left">© Copyrights 2020-2025-All rights reserved</span>
+                <span class="text-sm font-medium color-gray80 text-center sm:text-right ">Great Place to work © Institute Itaia Sri</span>
+            </div>
+        </mat-toolbar>
+    </mat-drawer-content>
+</mat-drawer-container>

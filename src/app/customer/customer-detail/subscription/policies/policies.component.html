@@ -1,0 +1,25 @@
+<h2 mat-dialog-title class="text-xl font-semibold">Policies</h2>
+<mat-divider class="mx-4"></mat-divider>
+<div class="mt-6 policy-pop-content">
+  <div mat-dialog-content>
+    <div class="custom-policies-pop">
+      <button *ngFor="let tab of tabButtons" class="hover:bg-blue-600 rounded-full sm:text-base text-sm color-gray80 font-medium px-2 py-1 sm:py-2.5 sm:px-3.5  selected ng-star-inserted" [class.selected]="selectedTab==tab" [class.unselected]="selectedTab!=tab" (click)="selectedTab=tab">{{tab}}</button>
+    </div>
+
+    <div *ngFor="let tab of content;let idx=index;" class="mb-4 mt-6">
+      <div class="font-semibold text-base color-black mb-2">{{tab.title}}</div>
+      <div *ngFor="let list of tab.list; let i=index;" class="flex mb-1">
+        <div class="mr-2"> <mat-slide-toggle [checked]="list.status==true" (change)="changeStatus(idx,i)"></mat-slide-toggle></div>
+        <div class=" sm:text-base text-sm"
+        [ngClass]="list.status==true?'color-black font-semibold':'color-gray58 font-medium'">{{list.label}}</div>
+      </div>
+    </div>
+</div>
+<div mat-dialog-actions class="justify-end mt-3">
+  <button mat-button mat-dialog-close class="font-medium sm:text-base text-sm">
+    Cancel
+  </button>
+  <button mat-button mat-dialog-close class="bg-sky-100 font-medium sm:text-base text-sm">
+    Save
+  </button>
+</div>

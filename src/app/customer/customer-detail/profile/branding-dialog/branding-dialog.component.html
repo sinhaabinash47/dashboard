@@ -1,0 +1,51 @@
+<h2 mat-dialog-title class="text-xl font-semibold">Branding</h2>
+<mat-divider></mat-divider>
+<mat-dialog-content class="mat-typography brand-dialog-content ">
+  <div class="mt-6">
+    <mat-card class="brand_uploder" [ngStyle]="{backgroundImage:'url(assets/image/rectangle.png)'}">
+      <div class="text-end">
+        <mat-icon class="material-icons-outlined ">delete</mat-icon>
+      </div>
+      <img width="105" height="105" [src]="imageUrl?imageUrl:'assets/image/logo.png'" alt="" class="mx-auto" />
+    </mat-card>
+    <div class="justify-center mt-3 mx-auto md:w-2/5 w-3/4 ">
+      <input #Image type="file" (change)="changeImage($any($event.target).files)" hidden />
+      <a href="javascript:void(0)" class="flex align-center text-base font-semibold justify-center color-sky"
+        (click)="Image.click()">
+        <span class="material-icons color-gray58">file_upload</span>Change Brand</a>
+    </div>
+  </div>
+  <div *ngFor="let color of colors;let i=index;">
+    <h4>{{color.name}}</h4>
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-7 items-center">
+      <div class="md:col-span-2 w-full">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label [ngStyle]="{'color':!color.bgColor ? 'rgba(128, 128, 128, 0.5);' : '' }">Background color</mat-label>
+          <input #picker matInput [(ngModel)]="color.bgColor" [(colorPicker)]="color.bgColor"
+           [cpOutputFormat]="'hex'" [cpSaveClickOutside]="true" [cpCloseClickOutside]="true" [cpCancelButton] ="true"/>
+          <mat-icon matSuffix [ngStyle]="{color:color.bgColor}" (click)="picker.click()" class="cursor-pointer brand-icon">stop</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="md:col-span-2 ">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label [ngStyle]="{'color':!color.textColor ? 'rgba(128, 128, 128, 0.5);' : '' }">Text color</mat-label>
+          <input #textColor matInput [(ngModel)]="color.textColor" [(colorPicker)]="color.textColor"
+           [cpCancelButton]="true" [cpOutputFormat]="'hex'" />
+          <mat-icon matSuffix [ngStyle]="{color:color.textColor}" (click)="textColor.click()" class="cursor-pointer brand-icon">stop</mat-icon>
+        </mat-form-field>
+      </div>
+      <div >
+        <button  [ngStyle]="{backgroundColor:color.bgColor, color:color.textColor}" class="h-12 w-full rounded cursor-auto color-gray80">Preview</button>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions class="justify-end mt-3">
+    <button mat-button mat-dialog-close class="font-medium sm:text-base text-sm">
+      Close
+    </button>
+    <button mat-button mat-dialog-close class="bg-sky-100 font-medium sm:text-base text-sm">
+      Submit
+    </button>
+  </div>
+</mat-dialog-content>
+

@@ -1,0 +1,102 @@
+<div class="md:flex mt-6 mx-4 custom-shadow">
+  <mat-card class="md:w-3/5 w-full md:mr-4 flex ">
+    <mat-toolbar class="flex-auto bg-inherit ">
+      <span class="font-semibold text-xl">Profile Details</span>
+      <span class="flex-auto"></span>
+      <button mat-flat-button (click)="openDetailDialog()" class="export-btn sm:text-base text-sm font-medium ">
+        <mat-icon class="text-lg mb-1.5 ">edit</mat-icon>Edit
+      </button>
+    </mat-toolbar>
+    <div class="mx-4 my-4">
+      <mat-divider></mat-divider>
+    </div>
+    <div class="flex p-4 sm:text-base text-sm">
+      <div class="color-gray58 font-medium w-full">
+        <div class="flex mb-2">
+          <div class="w-2/5 sm:w-1/3 mr-5">Client Code:</div>
+          <div class="w-3/5 sm:w-4/6 break-words color-black font-semibold">{{user.code }}</div>
+        </div>
+        <div class="flex mb-2">
+          <div class="w-2/5 sm:w-1/3 mr-5">Name:</div>
+          <div class="w-3/5 sm:w-4/6 break-words color-black font-semibold">{{user.name }}</div>
+        </div>
+        <div class="flex mb-2">
+          <div class="w-2/5 sm:w-1/3 mr-5">Customer Industry:</div>
+          <div class="w-3/5 sm:w-4/6 break-words color-black font-semibold">{{user.customer }}</div>
+        </div>
+        <div class="flex mb-2">
+          <div class="w-2/5 sm:w-1/3 mr-5">Business Structure:</div>
+          <div class="w-3/5 sm:w-4/6 break-words color-black font-semibold">{{user.business }}</div>
+        </div>
+        <div class="flex mb-2">
+          <div class="w-2/5 sm:w-1/3 mr-5">Region:</div>
+          <div class="w-3/5 sm:w-4/6 break-words color-black font-semibold">{{user.region }}</div>
+        </div>
+        <div class="flex mb-2">
+          <div class="w-2/5 sm:w-1/3 mr-5">Province:</div>
+          <div class="w-3/5 sm:w-4/6 break-words color-black font-semibold">{{user.province }}</div>
+        </div>
+        <div class="flex mb-2">
+          <div class="w-2/5 sm:w-1/3 mr-5">City:</div>
+          <div class="w-3/5 sm:w-4/6 break-words color-black font-semibold">{{user.city }}</div>
+        </div>
+        <div class="flex mb-2">
+          <div class="w-2/5 sm:w-1/3 mr-5">Company Site:</div>
+          <div class="w-3/5 sm:w-4/6 break-words color-black font-semibold">{{user.company }}</div>
+        </div>
+        <div class="flex mb-2">
+          <div class="w-2/5 sm:w-1/3 mr-5">Blue Collar:</div>
+          <div class="w-3/5 sm:w-4/6 break-words color-black font-semibold">{{user.blue }}</div>
+        </div>
+        <div class="flex mb-2">
+          <div class="w-2/5 sm:w-1/3 mr-5">Multi Country:</div>
+          <div class="w-3/5 sm:w-4/6 break-words color-black font-semibold">{{user.multi }}</div>
+        </div>
+        <div class="flex mb-2">
+          <div class="w-2/5 sm:w-1/3 mr-5">Recent Acquired:</div>
+          <div class="w-3/5 sm:w-4/6 break-words color-black font-semibold">{{user.recent }}</div>
+        </div>
+        <div class="flex mb-2">
+          <div class="w-2/5 sm:w-1/3 mr-5">Total Employees:</div>
+          <div class="w-3/5 sm:w-4/6 break-words color-black font-semibold">{{user.total }}</div>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+  <mat-card class="md:w-2/5 md:my-0 my-3 ">
+    <mat-toolbar class="flex-auto bg-inherit">
+      <span class="font-semibold text-xl">Branding</span>
+      <span class="flex-auto"></span>
+      <button mat-flat-button (click)="openBradingDialog()" class="export-btn sm:text-base text-sm font-medium ">
+        <mat-icon class="text-lg mb-1.5">edit</mat-icon>Edit
+      </button>
+    </mat-toolbar>
+    <div class="mx-4 my-4">
+      <mat-divider></mat-divider>
+    </div>
+
+    <div class="mx-2 flex flex-col custom-brand-height pb-3.5 md:pb-0">
+      <div class="self-center px-8">
+        <img src="assets/image/health.png" alt="" class="mx-auto">
+      </div>
+        <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 font-medium sm:text-base text-sm color-gray80 w-full mt-auto px-2.5 custom-cursor">
+          <div class="text-center self-center text-slate-500">
+            <div>Primary</div>
+            <button mat-raised-button
+              class="h-11 px-6 m-2 font-medium text-base text-white transition-colors duration-150 bg-blue-700 rounded-lg w-full">Preview</button>
+          </div>
+          <div class="text-center  self-center text-slate-500">
+            <div>Secondary</div>
+            <button
+              class="h-11 px-6 m-2 font-medium text-base text-white transition-colors duration-150 bg-red-600 rounded-lg w-full"
+              mat-raised-button>Preview</button>
+          </div>
+          <div class="text-center self-center text-slate-500">
+            <div>Tertiary</div>
+            <button mat-raised-button
+              class="h-11 px-6 m-2 font-medium text-base text-white bg-tertiary rounded-lg w-full">Preview</button>
+          </div>
+        </div>
+    </div>
+  </mat-card>
+</div>

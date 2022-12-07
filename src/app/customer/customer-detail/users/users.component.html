@@ -1,0 +1,155 @@
+<mat-card *ngIf="!showFilter" class="ml-4 mr-4 mt-2 fitler-content flex items-center">
+  <div class="items-center w-full grid grid-cols-1 sm:grid-cols-12 gap-3">
+    <div class="col-span-9">
+      <h4 *ngIf="!searchFeilds" class="custom-mb text-sm color-black font-medium">No filters selected</h4>
+      <div class="flex items-center flex-wrap custom-chip">
+        <mat-chip-list #chipList *ngIf="searchFeilds && searchFeilds.quick" class=" mb-2 mr-2 lg:mb-0 md:mx-2 ">
+          <mat-chip (removed)="remove('quick')"
+            class="whitespace-nowrap mb-3 md:mb-0 ">
+            Quick Search:{{searchFeilds.quick}}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+        <mat-chip-list #chipList *ngIf="searchFeilds && searchFeilds.subscription" class=" mb-2 mr-2 lg:mb-0 md:mx-2 ">
+          <mat-chip (removed)="remove('subscription')"
+            class="whitespace-nowrap mb-2">
+            Subscription:{{searchFeilds.subscription}}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+        <mat-chip-list #chipList  *ngIf="searchFeilds && searchFeilds.status" class=" mb-2 mr-2 lg:mb-0 md:mx-2 ">
+          <mat-chip (removed)="remove('status')"
+            class="whitespace-nowrap mb-2">
+            Status:{{searchFeilds.status}}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+    </div>
+    <div class="flex items-center sm:justify-end col-span-3">
+      <mat-icon class="mr-2">filter_list</mat-icon>
+      <h4 routerLink="#" (click)="showFilter=!showFilter"
+        class="text-sky-500 cursor-pointer custom-mb font-semibold text-base "><u>Show filters</u></h4>
+    </div>
+  </div>
+</mat-card>
+
+<mat-card *ngIf="showFilter" class="ml-4 mr-4 mt-4 fitler-content">
+  <div class="items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 custom-mat-field ">
+    <mat-form-field appearance="outline" class="custom-outline mb-3 lg:mb-0">
+      <mat-label class="custom-label ">Quick Search</mat-label>
+      <input name="rofl" matInput placeholder="" pattern="rofl" >
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="sm:mx-3 mb-3 lg:mb-0">
+      <mat-label>Subscription</mat-label>
+      <mat-select disableRipple name="rofl" matInput>
+        <mat-option value="1">Option 1</mat-option>
+        <mat-option value="2">Option 2</mat-option>
+        <mat-option value="3">Option 3</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="mb-3 lg:mb-0">
+      <mat-label>Range Date</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate placeholder="Start date">
+        <input matEndDate placeholder="End date">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+    <mat-slide-toggle class="lg:ml-8 custom-toggle mb-3 lg:mb-0 sm:mx-3 lg:mx-3 md:ml-0">Status</mat-slide-toggle>
+    <div class="text-left lg:text-right mb-3 lg:mb-0 md:mx-3 lg:mx-0">
+      <button class="p-2 px-4 export-btn  font-semibold text-base rounded text-white" (click)="search()">Search</button>
+    </div>
+  </div>
+</mat-card>
+<div class="ml-4 mr-4 mt-5 items-center sm:grid sm:grid-cols-12 gap-3 flex flex-col-reverse ">
+  <div class="sm:col-span-5 md:col-span-4 color-gray80 font-medium text-sm w-full sm:w-auto mt-4 sm:mt-0">
+    <div class="flex items-center" *ngIf="selection.selected.length>0">
+      {{selection.selected.length}} items selected
+      <div class=" p-2 rounded-full mx-3 bg-tab px-3">Items of 20</div></div>
+    <span *ngIf="selection.selected.length==0">
+      Showing 5
+      <span>Items of 20</span></span>
+  </div>
+  <div class="flex items-center sm:col-span-7 md:col-span-8 sm:justify-end justify-between flex-wrap w-full sm:w-auto user-btn">
+    <div class="mr-2 mb-3 sm:mb-0">
+      <button (click)="adduser()" mat-flat-button color="primary" class="font-medium text-base export-btn"><span
+          class="material-icons-outlined">
+          add
+        </span>Add</button>
+    </div>
+    <div class=" button-container mb-3 sm:mb-0">
+      <div class="spinner-container" *ngIf="loading">
+        <mat-spinner diameter="30"></mat-spinner>
+      </div>
+      <button mat-flat-button color="primary" class="font-medium text-base export-btn"
+        (click)="exportTable()">
+        <span class="material-icons-outlined">
+          file_download
+        </span>Export</button>
+    </div>
+    <div class="mb-3 sm:mb-0 ml-2">
+      <button mat-flat-button color="primary" class="font-medium text-base export-btn"><span
+          class="material-icons-outlined">
+          file_download
+        </span>Export Token</button>
+    </div>
+  </div>
+</div>
+
+<div class="mx-4 bg-light shadow-none mx-4 table-responsive">
+  <table mat-table id="ExampleMaterialTable" [dataSource]="dataSource" class="mt-4 custom-table table-auto">
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+          [checked]="selection.isSelected(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef>Username </th>
+      <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef> Role </th>
+      <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+    </ng-container>
+    <ng-container matColumnDef="lastlogin">
+      <th mat-header-cell *matHeaderCellDef> Last Login </th>
+      <td mat-cell *matCellDef="let element"> {{element.lastlogin}} </td>
+    </ng-container>
+    <ng-container matColumnDef="lastpasswordchange">
+      <th mat-header-cell *matHeaderCellDef> Last Password Change </th>
+      <td mat-cell *matCellDef="let element"> {{element.lastpasswordchange}} </td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let element"> {{element.action}}
+        <mat-icon class="material-icons-outlined mr-2 cursor-pointer rounded text-center py-1 custom-mat-icon"
+       (click)="edituser()">edit</mat-icon>
+        <mat-icon class="material-icons-outlined mr-2 cursor-pointer rounded text-center py-1 custom-mat-icon"
+        (click)="useremail()">email</mat-icon>
+        <mat-icon class="material-icons-outlined mr-2 custom-mat-icon cursor-pointer rounded text-center py-1" (click)="userlock()">
+          lock
+        </mat-icon>
+        <mat-icon class="material-icons-outlined mr-2 cursor-pointer rounded text-center py-1 custom-mat-icon"
+          (click)="delete()">delete</mat-icon>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+    </tr>
+  </table>
+</div>
+<mat-paginator class="custom-page" #paginator [pageSize]="5" [pageSizeOptions]="[5, 15, 10, 20]">
+</mat-paginator>

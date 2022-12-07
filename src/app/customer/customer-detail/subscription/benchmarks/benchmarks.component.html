@@ -1,0 +1,30 @@
+<h2 mat-dialog-title class="text-xl font-semibold">Benchmarks</h2>
+<mat-divider class="mt-6"></mat-divider>
+
+<form class="mt-6">
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Select</mat-label>
+    <mat-select [formControl]="toppingsControl" multiple>
+      <mat-option *ngFor="let topping of toppingList" [value]="topping">
+        {{topping}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
+
+<div class="grid gap-2 mb-4">
+<mat-chip-list #chipList >
+  <mat-chip *ngFor="let topping of toppingsControl.value" (removed)="onToppingRemoved(topping)">
+    {{topping}}
+    <mat-icon matChipRemove >cancel</mat-icon>
+  </mat-chip>
+</mat-chip-list>
+</div>
+<div mat-dialog-actions class="justify-end mt-3">
+  <button mat-button mat-dialog-close class="font-medium sm:text-base text-sm">
+    Cancel
+  </button>
+  <button mat-button mat-dialog-close class="bg-sky-100 font-medium sm:text-base text-sm">
+    Save
+  </button>
+</div>

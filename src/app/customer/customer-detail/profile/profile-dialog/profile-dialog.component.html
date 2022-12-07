@@ -1,0 +1,99 @@
+<h2 mat-dialog-title class="text-xl font-semibold">Profile Details</h2>
+<mat-divider></mat-divider>
+<mat-dialog-content class="mat-typography">
+  <form class="example-form mt-6">
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Code</mat-label>
+      <input matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Company</mat-label>
+      <input matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Industry</mat-label>
+      <mat-select>
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let state of industry" [value]="state">{{state}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Business Structure</mat-label>
+      <mat-select>
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let businesses of business" [value]="businesses">{{businesses}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Region</mat-label>
+      <input matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Province</mat-label>
+      <input matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>City</mat-label>
+      <mat-select>
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let country of states" [value]="country">{{country}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Corporate Website</mat-label>
+      <input matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Total Employees</mat-label>
+      <input matInput type="number">
+    </mat-form-field>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 sm:gap-3 gap-0">
+        <mat-form-field appearance="outline">
+          <mat-label>Bule Collar</mat-label>
+          <mat-select class="w-32">
+            <mat-option value="one">None Selected</mat-option>
+            <mat-option value="one">Yes</mat-option>
+            <mat-option value="two">No</mat-option>
+          </mat-select>
+        </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Multi Country</mat-label>
+        <mat-select>
+          <mat-option value="one">None Selected</mat-option>
+          <mat-option value="one">Yes</mat-option>
+          <mat-option value="two">No</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Recently Merged / Acquired</mat-label>
+      <mat-select>
+        <mat-option value="one">None Selected</mat-option>
+        <mat-option value="one">Yes</mat-option>
+        <mat-option value="two">No</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    
+  </form>
+</mat-dialog-content>
+
+
+<div mat-dialog-actions class="justify-end mt-3">
+  <button mat-button mat-dialog-close class="font-medium sm:text-base text-sm">
+    Close
+  </button>
+  <button mat-button mat-dialog-close class="bg-sky-100 font-medium sm:text-base text-sm">
+    Submit
+  </button>
+</div>

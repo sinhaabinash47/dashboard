@@ -1,0 +1,13 @@
+.custom-table th, .custom-table td {
+    padding: 8px 11px ; 
+  }
+.custom-table td {
+    white-space: normal !important; 
+}
+
+.custom-mat-field ::ng-deep .mat-form-field-wrapper{
+  padding: 0px;
+}
+.custom-min-w{
+  min-width: 200px;
+}

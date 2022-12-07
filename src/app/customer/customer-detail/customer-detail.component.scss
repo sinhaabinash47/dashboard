@@ -1,0 +1,33 @@
+
+.custom-cards .mat-card{
+    background: #FFFFFF;
+    box-shadow: 0px 0px 30px rgba(0, 144, 225, 0.04);
+    border-radius: 7px;
+    display: flex;
+    align-items:center;
+}
+.custom-cards .mat-card:last-child {
+    background: rgba(50, 87, 219, 0.1);
+    box-shadow: 0px 0px 30px rgba(0, 144, 225, 0.04);
+}
+.custom-cards .mat-card:hover{
+    background: #1492E6;
+    box-shadow: 2px 10px 20px rgba(0, 144, 225, 0.1);
+    border-radius: 7px;
+    display: flex;
+    align-items:center;
+    color: #fff;
+    cursor: pointer;
+}
+.custom-cards .mat-card:hover .mat-icon, .custom-cards .mat-card:hover .mat-list-item , .custom-cards .mat-card:hover p {
+    color: #fff !important;
+}
+.custom-cards .mat-card .mat-icon{
+    font-size: 30px;
+    height: 30px;
+    width: 32px;
+    margin-right: 10px;
+}
+.custom-cards .mat-card div p{
+   margin-bottom: 0;
+}

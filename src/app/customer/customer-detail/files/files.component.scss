@@ -1,0 +1,12 @@
+.custom-mat-field ::ng-deep .mat-form-field-wrapper{
+    padding: 0px;
+  }
+
+  .file-card-heading{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 50%;
+  }

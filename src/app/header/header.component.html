@@ -1,0 +1,44 @@
+<mat-toolbar class="custom-container">
+  <div class="grid sm:gap-3 grid-cols-2 w-full">
+    <div class="flex items-center lg:block">
+      <span class="flex items-center lg:hidden mr-2 sm:mr-3 custom-toggle-btn">
+          <mat-icon class="custom-toggle-icon mr-2 sm:mr-3 lg:hidden" (click)="toggle()" >{{isOpened?'close':'menu'}}</mat-icon>
+      </span>
+      <div class="leading-none">
+        <h3 class="custom-header-h3">Customers</h3>
+        <span class="text-sm sm:text-base color-gray80 hidden md:inline">Administration / Customers</span>
+      </div>
+    </div>
+    <div class="flex items-center justify-end">
+      <mat-select [(ngModel)]="language" class="custom-select sm:text-base text-sm">
+        <mat-select-trigger class="flex items-center">
+          <img src="{{getLangFlag()}}" alt="" class="custom-img-size"/>&nbsp;{{ language }}
+        </mat-select-trigger>
+        <mat-option *ngFor="let clang of languages" [value]="clang.lang" class="h-9" aria-selected = >
+          <div class="flex items-center">
+            <img src="{{clang.url}}" class=" mr-1 custom-img-size" alt="" />{{clang.lang}}
+          </div>
+        </mat-option>
+      </mat-select>
+      <span class="custom-divider hidden sm:inline">|</span>
+      <div>
+        <button mat-button [matMenuTriggerFor]="beforeMenu" class=" py-0 px-1.5 text-base font-semibold">
+          <span class="material-icons color-gray58">account_circle </span>
+          <span class="text-sm sm:text-base font-medium color-gray58 ml-1 hidden md:inline">Welcome,</span>
+          <span class="mr-1 text-sm sm:text-base hidden md:inline"> Demi Rose </span>
+          <mat-icon matSuffix class="color-gary80">keyboard_arrow_down</mat-icon>
+        </button>
+        <mat-menu #beforeMenu="matMenu" xPosition="before" class="custom-btn-menu">
+          <button mat-menu-item class="">
+            <mat-icon class=" menu-icon color-gray58">vpn_key</mat-icon>
+            <span>Change Password</span>
+          </button>
+          <button mat-menu-item class="">
+            <mat-icon class=" menu-icon color-gray58">logout</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>

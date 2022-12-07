@@ -1,0 +1,105 @@
+<div class="flex items-center col-span-8 justify-between sm:justify-end sm:mt-4 mt-6 mx-4">
+  <mat-form-field appearance="outline" class="custom-mat-field lg:w-1/4 sm:w-2/5 w-4/5 mr-2 ">
+    <mat-label>Subscriptions</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let subscription of subscriptions" [value]="subscription">
+        {{subscriptions}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-flat-button color="primary" class="font-medium text-base export-btn" (click)="addsubscription()">
+    <span class="material-icons-outlined">
+      add</span>Add
+  </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mx-4 my-4 custom-shadow mt-6 sm:mt-4 ">
+  <div class="grid grid-cols-1 gap-4">
+    <mat-card>
+      <div class="flex items-center justify-between mx-2 action-btn ">
+        <span class="font-semibold color-black text-lg">Overview</span>
+        <div>
+          <mat-icon class="material-icons-outlined rounded mx-1 cursor-pointer" (click)="edit()">edit</mat-icon>
+          <mat-icon class="material-icons-outlined rounded mx-1 cursor-pointer" (click)="delete()">delete</mat-icon>
+        </div>
+      </div>
+      <div class="mx-2 my-4">
+        <mat-divider></mat-divider>
+      </div>
+      <div class="flex justify-evenly	">
+        <div class="w-36 h-36">
+          <circle-progress [percent]="progress" [radius]="100" [outerStrokeWidth]="12" [innerStrokeWidth]="15"
+            [title]="title" [units]="units" titleFontSize="24" titleColor="#585858" unitsFontSize="24"
+            unitsFontWeight="600" titleFontWeight="500" [space]="-10" outerStrokeColor="#47B61A"
+            innerStrokeColor="#E7E7E7" [showSubtitle]="false" [animation]="true" [responsive]="true"
+            [animationDuration]="1000" [showUnits]="true">
+          </circle-progress>
+        </div>
+        <div class="my-10">
+          <span class="green md:text-2xl text-xl font-semibold">Accelerate</span>
+          <p class="color-gray80 font-medium text-sm ">Valid from 1/1/2022 - Valid to 12/31/2022</p>
+        </div>
+      </div>
+    </mat-card>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 ">
+      <mat-card *ngFor="let bench of benchmarks">
+        <div class="flex items-center justify-between mx-2 action-btn">
+          <span class="font-semibold color-black text-lg">{{bench.head}}</span>
+          <span class="flex-auto"></span>
+          <mat-icon class="material-icons-outlined  rounded mx-1 cursor-pointer" (click)="openDetailDialog()">edit</mat-icon>
+        </div>
+        <div class="mx-2 my-4">
+          <mat-divider></mat-divider>
+        </div>
+        <div class="subscription-chip mx-2">
+          <mat-chip-list class="" cdkDropList cdkDropListOrientation="horizontal"
+            (cdkDropListDropped)="drop($event)">
+            <mat-chip class="whitespace-nowrap text-base font-medium" cdkDrag
+              *ngFor="let vegetable of tramite">
+              {{vegetable.name}}
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+
+  <mat-card>
+    <div class="flex items-center justify-between mx-2 action-btn">
+      <span class="font-semibold color-black text-lg">Policies</span>
+      <div>
+        <mat-icon class="material-icons-outlined rounded mx-1 cursor-pointer" (click)="policies()">edit</mat-icon>
+        <mat-icon class="material-icons-outlined rounded mx-1 cursor-pointer" (click)="delete()">delete</mat-icon>
+      </div>
+    </div>
+    <div class="mx-2 my-4">
+      <mat-divider></mat-divider>
+    </div>
+    <div class="flex">
+      <div class="p-3 policy-list">
+        <span class="font-semibold text-base color-black">{{contact.paticipate}}</span>
+        <div class="my-4 font-medium text-base color-gray58 ">
+          <ul class="list-none list-inside">
+            <li class="flex mb-1 before:content-['\2022'] before:mr-4"><p>{{contact.paragraph}}</p></li>
+            <li class="flex mb-1 before:content-['\2022'] before:mr-4"><p>{{contact.paragraph1}}</p></li>
+          </ul>
+        </div>
+        <span class="font-semibold text-base color-black ">{{contact.head1}}</span>
+        <div class="my-4 font-medium text-base color-gray58">
+          <ul class="list-none list-inside">
+            <li class="flex mb-1 before:content-['\2022'] before:mr-4"><p>{{contact.content}}</p></li>
+            <li class="flex mb-1 before:content-['\2022'] before:mr-4"><p>{{contact.content}}</p></li>
+            <li class="flex mb-1 before:content-['\2022'] before:mr-4"><p>{{contact.content}}</p></li>
+            <li class="flex mb-1 before:content-['\2022'] before:mr-4"><p>{{contact.content}}</p></li>
+          </ul>
+        </div>
+        <span class="font-semibold text-base color-black ">{{contact.head2}}</span>
+        <div class="my-4 font-medium text-base color-gray58">
+          <ul class="list-none list-inside mx-4">
+            <li class="flex mb-1 before:content-['\2022'] before:mr-4"><p>{{contact.content1}}</p></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

@@ -1,0 +1,43 @@
+<h2 mat-dialog-title class="text-xl font-semibold">Add File</h2>
+<mat-divider class="mt-4"></mat-divider>
+
+<form class="example-form mt-6">
+  <mat-form-field class="example-full-width" appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput>
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Select files</mat-label>
+      <input [hidden]="true" (change)="onFileSelect($event)" type="file" accept="all/*" #fileSelect>
+      <input readonly matInput [(ngModel)]="filename" />
+      <button *ngIf="this.base64File" (click)="this.base64File = null; this.filename = null" matSuffix
+        matTooltip="Remove selected file" [matTooltipPosition]="'above'" type="button" color="warn" mat-icon-button>
+        <mat-icon>close</mat-icon>
+      </button>
+      <button matSuffix mat-icon-button (click)="fileSelect.click();" matTooltip="Select a file"
+        [matTooltipPosition]="'above'">
+        <mat-icon>file_upload</mat-icon>
+      </button>
+    </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Tag</mat-label>
+      <mat-chip-list #chipList>
+        <input [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+      </mat-chip-list>
+    </mat-form-field>
+<div>
+    <mat-chip class="mx-1 my-1" *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable" (removed)="remove(fruit)">
+      {{fruit.name}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+</div>
+</form>
+<div mat-dialog-actions class="justify-end mt-3">
+  <button mat-button mat-dialog-close class="font-medium sm:text-base text-sm">
+    Cancel
+  </button>
+  <button mat-button mat-dialog-close class="bg-sky-100 font-medium sm:text-base text-sm">
+    Save
+  </button>
+</div>

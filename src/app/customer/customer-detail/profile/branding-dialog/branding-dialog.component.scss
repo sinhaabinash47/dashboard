@@ -1,0 +1,30 @@
+.brand_uploder{
+    background-size: cover;
+    border-radius: 7px;
+}
+.mat-dialog-content .brand-icon{
+    font-size: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand_uploder .mat-icon{
+    background: rgba(20, 146, 230, 0.5) ;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: end;
+    border-radius: 7px;
+    padding: 20px;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.brand_uploder .mat-icon:hover{
+    background: #1492E6 !important;
+    color: #fff !important;
+}
+
+

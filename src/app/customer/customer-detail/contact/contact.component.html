@@ -1,0 +1,54 @@
+<div class="ml-4 mr-4 mt-5 items-center sm:grid sm:grid-cols-12 gap-3 flex flex-col-reverse">
+
+	<div class="sm:col-span-4 w-full sm:w-auto mt-4 sm:mt-0">
+		  <span class="color-gray58 sm:text-base text-sm font-medium">Administration contacts - 2 Element</span>
+	</div>
+	<div class="flex items-center sm:col-span-8 w-full sm:w-auto  justify-between sm:justify-end flex-wrap">
+
+    <mat-form-field appearance="outline" class="mr-2 mb-2 sm:mb-0 custom-mat-field ">
+			<mat-label >Quick Search</mat-label>
+			<input matInput [(ngModel)]="contact">
+			<button class="h-10"  matSuffix [ngClass]="contact?'add-btn':'disable-btn'" [disabled]="!contact">
+        <mat-icon class="mx-auto ">search</mat-icon></button>
+		</mat-form-field>
+    <div class="mb-2 sm:mb-0">
+      <button mat-flat-button color="primary" class=" export-btn font-medium md:text-base text-sm"
+        (click)="dialogContact()"><span class="material-icons-outlined">add</span>Add</button>
+    </div>
+
+  </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mx-4 my-4 custom-shadow">
+  <mat-card *ngFor="let contact of contacts">
+    <div class="flex items-center justify-between mx-2 action-btn">
+      <span class="font-semibold text-xl color-black">Contact</span>
+      <span class="flex-auto"></span>
+      <mat-icon class="material-icons-outlined rounded mx-2  cursor-pointer" (click)="editcontact()">edit</mat-icon>
+      <mat-icon class="material-icons-outlined rounded  cursor-pointer" (click)="delete()">delete</mat-icon>
+    </div>
+    <div class="mx-2 my-4">
+      <mat-divider></mat-divider>
+    </div>
+    <div class="flex px-2 sm:text-base text-sm color-gray58">
+      <div class="w-full">
+        <div class="flex mb-2">
+          <div class="w-1/4">Name:</div>
+          <div class="w-3/4 break-words color-black font-semibold">{{contact.name}}</div>
+        </div>
+        <div class="flex mb-2">
+          <div class="w-1/4">Email:</div>
+          <div class="w-3/4 break-words color-black font-semibold">{{contact.email}}</div>
+        </div>
+        <div class="flex mb-2">
+          <div class="w-1/4">Phone:</div>
+          <div class="w-3/4 break-words color-black font-semibold">{{contact.cont}}</div>
+        </div>
+        <div class="flex mb-2">
+          <div class="w-1/4">Ruolo:</div>
+          <div class="w-3/4 break-words color-black font-semibold">{{contact.owner}}</div>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>
+

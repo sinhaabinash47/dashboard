@@ -1,0 +1,20 @@
+.custom-mat-field ::ng-deep .mat-form-field-wrapper{
+  padding: 0px;
+}
+
+.danger{
+  color: #FF1628 !important;
+}
+.fw-semibold{
+  font-weight: 600 !important;
+}
+
+.table-responsive{
+  overflow: auto;
+}
+
+.table-responsive table th, .table-responsive table td {
+  padding: 8px 11px !important;
+  white-space: nowrap;
+}
+
